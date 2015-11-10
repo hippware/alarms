@@ -8,7 +8,7 @@
 %%%-------------------------------------------------------------------
 -module(alarms_utils).
 
--export([get_cfg/1, set_cfg/2, alarm_types/0, event_manager/0,
+-export([get_cfg/1, set_cfg/2, get_alarm_cfg/2, alarm_types/0, event_manager/0,
          now_epoch_usec/0, epoch_usec_to_local_time/1]).
 
 -include("alarms.hrl").
@@ -21,6 +21,15 @@ get_cfg(Key) ->
 
 set_cfg(Key, Val) ->
     application:set_env(alarms, Key, Val).
+
+
+get_alarm_cfg(Mod, Key) ->
+    case application:get_env(alarms, Mod) of
+        undefined -> undefined;
+        {ok, AlarmCfg} -> proplists:get_value(Key, AlarmCfg)
+    end.
+
+
 
 alarm_types() ->
     ?ALARM_TYPES.
