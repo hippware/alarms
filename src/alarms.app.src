@@ -1,13 +1,14 @@
 {application, alarms,
  [
   {description, "Alarm handler for systems using mnesia"},
-  {vsn, "0.1.1"},
+  {vsn, "0.1.2"},
   {registered, []},
   {applications, [
                   kernel,
                   stdlib,
                   sasl,
-                  mnesia
+                  mnesia,
+                  folsom
                  ]},
   {mod, {alarms_app, []}},
   {env, [
