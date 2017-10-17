@@ -28,15 +28,6 @@ key(Mod, Key) ->
 set_cfg(Key, Val) ->
     application:set_env(alarms, Key, Val).
 
-
-get_alarm_cfg(Mod, Key) ->
-    case application:get_env(alarms, Mod) of
-        undefined -> undefined;
-        {ok, AlarmCfg} -> proplists:get_value(Key, AlarmCfg)
-    end.
-
-
-
 alarm_types() ->
     ?ALARM_TYPES.
 
